@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 元素是构成React应用的最小单位，JSX就是用来声明React当中的元素 -->
+    <!-- 要将React元素渲染到根DOM节点中，我们通过把他们都传递给ReactDOM.render的方法来将其渲染到页面上 -->
+    <div id="example"></div>
+
+    <script type="text/babel">
+        var i = 1;
+        var myStyle = {
+            fontSize: 100,
+            color: '#FF0000'
+        };
+        var arr = [
+            <h1>菜鸟教程</h1>,
+            <h2>学的不仅是技术，更是梦想！</h2>,
+        ];
+        ReactDOM.render(
+            <div>
+                <h1>学习 React</h1>
+                <p data-myattribute="somevalue">这是一个很不错的JS库</p>
+                <hr/>
+
+                <h1>JavaScript 表达式</h1>
+                <h2>{1 + 1}</h2>
+                <hr/>
+
+                <h1>在 JSX 中不能使用 if else 语句，但可以使用 conditional (三元运算) 表达式来替代</h1>
+                <h2>{i == 1 ? 'True!' : 'False'}</h2>
+                <hr/>
+
+                <h1>样式</h1>
+                <h2>React 推荐使用内联样式。我们可以使用 camelCase 语法来设置内联样式. React 会在指定元素数字后自动添加 px</h2>
+                <h2 style={myStyle}>菜鸟教程</h2>
+                <hr/>
+
+                <h1>注释需要写在花括号中，实例如下：</h1>
+                {/*注释...*/}
+                <p>{'/*注释...*/'}</p>
+                <hr/>
+
+                <h1>JSX 允许在模板中插入数组，数组会自动展开所有成员：</h1>
+                <div>{arr}</div>
+            </div>
+            ,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div id="example"></div>
+
+    <script type="text/babel">
+        // React把组件看成是个状态机，通过与用户的交互，实现不同状态渲染UI，让用户界面和数据保持一致
+        // React里，只需要更新组件的state，然后根据新的state重新渲染用户界面，不需要操作DOM
+
+        // 添加一个类构造函数来初始化状态this.state，类组件应始终使用props调用基础构造函数
+        // class Clock extends React.Component {
+        //     constructor(props) {
+        //         super(props);
+        //         this.state = { date: new Date()};
+        //     }
+
+        //     render() {
+        //         return (
+        //             <div>
+        //                 <h1>hello,world</h1>
+        //                 <h2>现在是{this.state.date.toLocaleTimeString()}</h2>
+        //             </div>
+        //         );
+        //     }
+        // }
+
+        // ReactDOM.render(
+        //     <Clock/>,
+        //     document.getElementById('example')
+        // );
+
+
+        // 将生命周期方法添加到类中
+        // 在具有许多组件的应用程序中，在销毁时释放组件所占用的资源非常重要。
+        // 每当 Clock 组件第一次加载到 DOM 中的时候，我们都想生成定时器，这在 React 中被称为挂载。
+        // 同样，每当 Clock 生成的这个 DOM 被移除的时候，我们也会想要清除定时器，这在 React 中被称为卸载。
+        // 我们可以在组件类上声明特殊的方法，当组件挂载或卸载时，来运行一些代码：
+
+
+        // 数据自顶向下流动
+        function FormattedDate(props) {
+            return <h2>现在是 {props.date.toLocaleTimeString()}.</h2>;
+        }
+
+        // ES6的继承写法
+        class Clock extends React.Component {
+            // constructor构造函数
+            constructor(props) {
+                // 子类必须在constructor方法中调用super方法，否则新建实例时会报错。
+                // 这是因为子类自己的this对象，必须先通过父类的构造函数完成塑造，得到
+                // 与父类同样的实例属性和方法，然后再对其进行加工，加上子类自己的实例
+                // 属性和方法。如果不调用super方法，子类就得不到this对象。
+                super(props);
+                this.state = { date: new Date() };
+            }
+
+            // componentDidMount() 与 componentWillUnmount() 方法被称作生命周期钩子。
+
+            // componentDidMount：在render之后自动调用
+            componentDidMount() {
+                this.timerID = setInterval(
+                    () => this.tick(),
+                    1000
+                );
+            }
+
+            componentWillUnmount() {
+                clearInterval(this.timerID);
+            }
+
+
+            tick() {
+                this.setState({
+                    date: new Date()
+                });
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1>hello world</h1>
+                        <FormattedDate date={this.state.date} />
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <Clock />,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+
+</html>

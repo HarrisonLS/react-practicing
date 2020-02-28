@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="example"></div>
+
+    <!-- 通过用花括号包裹代码在 JSX 中嵌入任何表达式 ，也包括 JavaScript 的逻辑与 &&，它可以方便地条件渲染一个元素。 -->
+    <script type="text/babel">
+        function Mailbox(props) {
+            const unreadMessages = props.unreadMessages;
+            return (
+                <div>
+                    <h1>Hello!</h1>
+                    {unreadMessages.length > 0 &&
+                        <h2>
+                            您有{unreadMessages.length}条信息
+                        </h2>
+                    }
+                </div>
+            );
+        }
+
+        const messages = ['React', 'Re: React', 'Re:Re: React'];
+        ReactDOM.render(
+            <Mailbox unreadMessages={messages} />,
+            document.getElementById('example')
+        );
+
+
+    </script>
+</body>
+
+</html>

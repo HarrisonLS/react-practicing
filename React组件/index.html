@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+
+    <script type="text/babel">
+        // 原生HTML元素以小写字母开头，而自定义的React类名以大写字母开头
+        // 初次之外还需要注意组件类只能包含一个顶层标签，否则也会报错
+        function HelloMessage(props) {
+            return <h1>hello world</h1>
+        }
+
+        const element1 = <HelloMessage />
+
+        ReactDOM.render(
+            element1,
+            document.getElementById('example1')
+        );
+
+        // 传递参数形式
+        function Hello(props) {
+            // 用大括号括起来this.props对象
+            return <h1>hello,{props.name}</h1>
+        }
+        const element2 = <Hello name="harrison" />
+        ReactDOM.render(
+            element2,
+            document.getElementById('example2')
+        )
+
+
+        // 复合组件
+        function Name(props) {
+            return <h1>网站名称:{props.name}</h1>;
+        }
+        function Url(props) {
+            return <h1>网站地址：{props.url}</h1>;
+        }
+        function Nickname(props) {
+            return <h1>网站小名:{props.nickname}</h1>;
+        }
+        function App() {
+            return (
+                <div>
+                    <hr />
+                    <Name name="runoob" />
+                    <Url url="http://www.runoob.com" />
+                    <Nickname nickname="harrison" />
+                </div>
+            );
+        }
+        ReactDOM.render(
+            <App />,
+            document.getElementById('example3')
+        );
+    </script>
+</body>
+
+</html>
