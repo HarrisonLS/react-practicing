@@ -33,7 +33,19 @@
 
             render() {
                 const isLoggedIn = this.state.isLoggedIn;
-
+                // 三目运算符方法
+                // render() {
+                //     const isLoggedIn = this.state.isLoggedIn;
+                //     return (
+                //         <div>
+                //             {isLoggedIn ? (
+                //                 <LogoutButton onClick={this.handleLogoutClick} />
+                //             ) : (
+                //                     <LoginButton onClick={this.handleLoginClick} />
+                //                 )}
+                //         </div>
+                //     );
+                // }
                 let button = null;
                 if (isLoggedIn) {
                     button = <LogoutButton onClick={this.handleLogoutClick} />
@@ -58,11 +70,11 @@
             return <h1>请先注册.</h1>
         }
 
-        function Greeting(props){
+        function Greeting(props) {
             const isLoggedIn = props.isLoggedIn
-            if(isLoggedIn){
+            if (isLoggedIn) {
                 return <UserGreeting />
-            }else {
+            } else {
                 return <GuestGreeting />
             }
         }
@@ -70,14 +82,14 @@
         function LogoutButton(props) {
             return (
                 <button onClick={props.onClick}>
-                登录
+                    登录
                 </button>
             );
         }
         function LoginButton(props) {
             return (
                 <button onClick={props.onClick}>
-                登出
+                    登出
                 </button>
             );
         }

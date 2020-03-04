@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div id="example"></div>
+    <script type="text/babel">
+        // // 使用map方法遍历数组生成一个1到5的数字列表
+        // const numbers = [1,2,3,4,5];
+        // const listItems = numbers.map((numbers) =>
+        //     <li>{numbers}</li>
+        // )
+
+        // ReactDOM.render(
+        //     <ul>{listItems}</ul>,
+        //     document.getElementById('example')
+        // );
+
+        // 如果列表可以重新排序，我们不建议使用索引来进行排序，因为这会导致渲染变得很慢
+        function NumberList(props) {
+            const numbers = props.numbers;
+            const listItems = numbers.map((number) =>
+                <li key={number.toString()}>
+                    {number}
+                </li>
+            );
+            return (
+                <ul>{listItems}</ul>
+            );
+        }
+
+        const numbers = [11, 22, 33, 44, 55];
+        ReactDOM.render(
+            <NumberList numbers={numbers} />,
+            document.getElementById('example')
+        );
+    </script>
+</body>
+
+</html>
