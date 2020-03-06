@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>请点击文本标记之一，就可以触发相关控件：</p>
+
+
+    <!-- label的作用是将其与其他标签绑定起来
+     <label>与其他元素关联的方式有两种
+     1、显式联系：显式联系通过<label>的 "for" 属性和目标标签的 ID 来完成
+    2、隐式联系：隐式联系可通过标签嵌套完成 -->
+
+    <!-- 作用：label与radio属性的input标签绑定在一起，点击label标签的时候也就相当于点击了input标签的内容 -->
+    <form>
+        <!-- 显示联系 -->
+        <label for="male">Male</label>
+        <input type="radio" name="sex" id="male" />
+        <br />
+        <label for="female">Female</label>
+        <input type="radio" name="sex" id="female" />
+        <hr/>
+        <!-- 隐式联系 -->
+        <label><input type="radio" name="sex" id="male" />Male</label>
+        <label><input type="radio" name="sex" id="female" />Female</label>
+
+    </form>
+</body>
+
+</html>

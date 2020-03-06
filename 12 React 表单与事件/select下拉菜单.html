@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="example">
+    </div>
+
+    <script type="text/babel">
+        class FlavorForm extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {value:'coconut'};
+                this.handleChange = this.handleChange.bind(this)
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+
+            // event 指事件对象
+            // event.target 指向触发当前事件的 dom 元素
+            // vent.target.value 就是触发当前事件的dom的value属性
+            handleChange(event){
+                this.setState({value:event.target.value});
+                // console.log(event.target.value);
+            }
+
+            // preventDefault方法阻止元素发生默认的行为：比如阻止url链接的跳转、点击提交按钮时阻止对表单的提交
+            handleSubmit(event){
+                alert('Your favourite flavor is :' +this.state.value);
+                event.preventDefault();
+            
+            }
+            render(){
+                return(
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            <select name="" id="" value={this.state.value} onChange={this.handleChange}>
+                                <option value="gg">Google</option>
+                                <option value="rn">Runoob</option>
+                                <option value="tb">Taobao</option>
+                                <option value="fb">Facebook</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="提交"/>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <FlavorForm/>,
+            document.getElementById('example')
+        );
+
+    </script>
+</body>
+</html>

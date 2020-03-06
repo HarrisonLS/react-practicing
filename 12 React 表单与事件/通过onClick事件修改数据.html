@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="example1"></div>
+    <hr />
+    <div id="example2"></div>
+
+    <script type="text/babel">
+
+        class HelloMessage extends React.Component {
+            constructor(props) {
+                super(props);
+                // 这里绑定的是state而不是value
+                this.state = { value: 'hello runoob!' };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(event) {
+                this.setState({ value: 'hello harrison!' })
+            }
+
+            render() {
+                var value = this.state.value;
+                return (
+                    <div>
+                        <button onClick={this.handleChange}>点我</button>
+                        <h4>{value}</h4>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <HelloMessage />,
+            document.getElementById('example1')
+        );
+
+
+        // 当你需要从子组件中更新父组件的 state 时，你需要在父组件通过创建事件句柄 (handleChange) 
+        // 并作为 prop (updateStateProp) 传递到你的子组件上。
+        class Content extends React.Component {
+            render() {
+                return <div>
+                    <button onClick={this.props.updateStateProp}>点我</button>
+                    <h4>{this.props.myDataProp}</h4>
+                </div>
+            }
+        }
+        class Hello extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: 'Hello Runoob!' };
+                this.handleChange = this.handleChange.bind(this);
+            }
+            handleChange(event) {
+                this.setState({ value: '菜鸟教程' })
+            }
+            render() {
+                var value = this.state.value;
+                return <div>
+                    <Content myDataProp={value}
+                        updateStateProp={this.handleChange}></Content>
+                </div>;
+            }
+        }
+        ReactDOM.render(
+            <Hello />,
+            document.getElementById('example2')
+        );
+
+    </script>
+</body>
+
+</html>

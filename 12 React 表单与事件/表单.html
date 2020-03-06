@@ -9,25 +9,36 @@
     <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 <body>
+    
     <div id="example"></div>
     <script type="text/babel">
-        class HelloMessage extends React.Component {
+        class Content extends React.Component {
+             render() {
+                 return(
+                    <div>
+                    <input type="text" value={this.props.myDataProp} onChange={this.props.updateStateProp}/>
+                    <h4>{this.props.myDataProp}</h4>
+                    </div>
+                 );
+             }
+        }
+
+        class HelloMessage extends React.Component{
             constructor(props){
                 super(props);
-                this.state ={value:'hello harrison'};
+                this.state = {value:'hello runoob'};
                 this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChange(event) {
+            handleChange(event){
                 this.setState({value:event.target.value});
             }
-
             render() {
                 var value = this.state.value;
                 return(
                     <div>
-                        <input type="text" value={value} onChange={this.handleChange}/>
-                        <h4>{value}</h4>
+                    <Content myDataProp = {value}
+                    updateStateProp = {this.handleChange}></Content>
                     </div>
                 );
             }
